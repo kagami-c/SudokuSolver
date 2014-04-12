@@ -31,23 +31,24 @@ namespace SudokuSolver
 
         private void LoadControls()
         {
-            for (int i = 0; i < 9 + 2; i++)
+            for (int i = 0; i < 19; i++)
             {
                 MainField.RowDefinitions.Add(new RowDefinition());
                 MainField.ColumnDefinitions.Add(new ColumnDefinition());
             }
+            MainField.RowDefinitions.Add(new RowDefinition());
 
             // there is a offset in i & j
-            for (int i = 1; i < 10; i++)
+            for (int i = 1; i < 19; i++, i++)
             {
-                for (int j = 1; j < 10; j++)
+                for (int j = 1; j < 19; j++, j++)
                 {
                     TextBox textBox = new TextBox();
                     MainField.Children.Add(textBox);
                     textBox.SetValue(Grid.RowProperty, i);
                     textBox.SetValue(Grid.ColumnProperty, j);
-                    textBox.Height = 20;
-                    textBox.Width = 20;
+                    textBox.Height = 25;
+                    textBox.Width = 25;
                     textBox.HorizontalAlignment = HorizontalAlignment.Center;
                     textBox.VerticalAlignment = VerticalAlignment.Center;
                     textBox.TextAlignment = TextAlignment.Center;
@@ -81,10 +82,10 @@ namespace SudokuSolver
                 }
             }
 
+            // Start the solution
             MainSolution.Start(container);
 
-            // Position11.Text = container[0, 0].Value.ToString();
-            // Position12.Text = container[0, 1].Value.ToString();
+            // display the result
             i = 0;
             j = 0;
             foreach (TextBox text in textboxs)
